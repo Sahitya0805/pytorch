@@ -2447,7 +2447,7 @@ if HAS_CUDA_AND_TRITON:
                 out = foo(torch.rand([4, 4], device="cuda", requires_grad=True))
 
             FileCheck().check(
-                "Unable to hit fast path of CUDAGraphs because of pending"
+                "Unable to hit fast path of CUDAGraphs because outputs from a previous step still require backward"
             ).run(str(w[0]))
             self.assertTrue(self.get_manager().new_graph_id().id == 0)
 
